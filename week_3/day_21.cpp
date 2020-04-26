@@ -125,7 +125,7 @@ public:
     }
 };
 
-// solution 3: randomized row selection: O(log2(N) * log2(M))
+// solution 3: randomized row selection: Θ(log2(N) * log2(M))
 // expected query: 49
 /**
  * // This is the BinaryMatrix's API interface.
