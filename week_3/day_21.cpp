@@ -117,7 +117,7 @@ public:
         
         while(U <= D)
         {
-        	if(max_till_now == m) return 0;
+			if(max_till_now == m) return 0;
             int v = binaryMatrix.get(U, m - max_till_now - 1);
             if(v == 1) max_till_now++;
             else U++;  
