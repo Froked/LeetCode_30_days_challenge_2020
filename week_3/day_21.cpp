@@ -102,6 +102,7 @@ public:
 
 // solution 2: traversing grid: O(N + M)
 // expected query: 200
+
 class Solution {
 public:
     int n, m;
@@ -127,15 +128,6 @@ public:
 
 // solution 3: randomized row selection: Θ(log2(N) * log2(M))
 // expected query: 49
-/**
- * // This is the BinaryMatrix's API interface.
- * // You should not implement it, or speculate about its implementation
- * class BinaryMatrix {
- *   public:
- *     int get(int x, int y);
- *     vector<int> dimensions();
- * };
- */
 
 class Solution {
 public:
