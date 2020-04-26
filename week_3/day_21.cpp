@@ -56,7 +56,7 @@ mat[i] is sorted in a non-decreasing way.
 
 **/
 
-// solution 1: binary search: O(NlogM)
+
 /**
  * // This is the BinaryMatrix's API interface.
  * // You should not implement it, or speculate about its implementation
@@ -66,6 +66,9 @@ mat[i] is sorted in a non-decreasing way.
  *     vector<int> dimensions();
  * };
  */
+
+// solution 1: binary search: O(NlogM)
+// expected query: 665
 
 class Solution {
 public:
@@ -94,5 +97,69 @@ public:
         }
         if(L == m) L = -1;
         return L;
+    }
+};
+
+// solution 2: traversing grid: O(N + M)
+// expected query: 200
+class Solution {
+public:
+    int n, m;
+    int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
+        vector<int>dim = binaryMatrix.dimensions();
+        n = dim[0];
+        m = dim[1];
+        int max_till_now = 0;
+        int U = 0;
+        int D = n - 1;
+        
+        while(U <= D)
+        {
+            int v = binaryMatrix.get(U, m - max_till_now - 1);
+            if(v == 1) max_till_now++;
+            else U++;
+            if(max_till_now == m) return 0;
+        }
+        return m - max_till_now == m ? -1 : m - max_till_now;
+        
+    }
+};
+
+// solution 3: randomized row selection: O(log2(N) * log2(M))
+// expected query: 49
+/**
+ * // This is the BinaryMatrix's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * class BinaryMatrix {
+ *   public:
+ *     int get(int x, int y);
+ *     vector<int> dimensions();
+ * };
+ */
+
+class Solution {
+public:
+    int n, m;
+    int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
+        vector<int>dim = binaryMatrix.dimensions();
+        n = dim[0];
+        m = dim[1];
+        int max_till_now = 0;
+        int U = 0;
+        int D = n - 1;
+        
+        vector<int>rows(n);
+        iota(rows.begin(), rows.end(), 0);
+        random_shuffle(rows.begin(), rows.end());
+        
+        while(U <= D)
+        {
+            if(max_till_now == m) return 0;
+            int v = binaryMatrix.get(rows[U], m - max_till_now - 1);
+            if(v == 1) max_till_now++;
+            else U++;
+        }
+        return m - max_till_now == m ? -1 : m - max_till_now;
+        
     }
 };
