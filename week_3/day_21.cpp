@@ -106,7 +106,8 @@ public:
 class Solution {
 public:
     int n, m;
-    int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
+    int leftMostColumnWithOne(BinaryMatrix &binaryMatrix)
+    {
         vector<int>dim = binaryMatrix.dimensions();
         n = dim[0];
         m = dim[1];
@@ -116,13 +117,12 @@ public:
         
         while(U <= D)
         {
+        	if(max_till_now == m) return 0;
             int v = binaryMatrix.get(U, m - max_till_now - 1);
             if(v == 1) max_till_now++;
-            else U++;
-            if(max_till_now == m) return 0;
+            else U++;  
         }
         return m - max_till_now == m ? -1 : m - max_till_now;
-        
     }
 };
 
@@ -132,7 +132,8 @@ public:
 class Solution {
 public:
     int n, m;
-    int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
+    int leftMostColumnWithOne(BinaryMatrix &binaryMatrix)
+    {
         vector<int>dim = binaryMatrix.dimensions();
         n = dim[0];
         m = dim[1];
@@ -152,6 +153,5 @@ public:
             else U++;
         }
         return m - max_till_now == m ? -1 : m - max_till_now;
-        
     }
 };
